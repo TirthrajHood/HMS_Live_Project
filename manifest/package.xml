@@ -4,5 +4,9 @@
 		<members>ref_by__c</members>
 		<name>CustomObject</name>
 	</types>
+	<types>
+		<members>HMS_Consultant</members>
+		<name>PermissionSet</name>
+	</types>
 	<version>55.0</version>
 </Package>
