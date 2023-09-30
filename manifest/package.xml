@@ -2,6 +2,9 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
 		<members>ref_by__c</members>
+		<members>screening_template__c</members>
+		<members>template__c</members>
+		<members>user_master__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
