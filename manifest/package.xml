@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
+		<members>X87872996_hospitallogoblackandwhiteh</members>
+		<name>ContentAsset</name>
+	</types>
+	<types>
 		<members>ref_by__c</members>
 		<members>screening_template__c</members>
 		<members>template__c</members>
