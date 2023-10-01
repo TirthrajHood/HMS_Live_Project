@@ -6,13 +6,15 @@
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
     </brand>
-    <formFactors>Small</formFactors>
+    <description>App Built for kidney specialist</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>HMS (Live Project)</label>
     <navType>Standard</navType>
+    <setupExperience>all</setupExperience>
+    <tabs>standard-home</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>HMS_Live_Project_UtilityBar</utilityBar>
 </CustomApplication>
