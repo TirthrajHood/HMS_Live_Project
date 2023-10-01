@@ -5,6 +5,10 @@
 		<name>ContentAsset</name>
 	</types>
 	<types>
+		<members>past_history__c</members>
+		<members>patient1__c</members>
+		<members>prescription__c</members>
+		<members>prescription_template__c</members>
 		<members>ref_by__c</members>
 		<members>screening_template__c</members>
 		<members>template__c</members>
