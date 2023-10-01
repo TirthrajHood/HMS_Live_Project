@@ -8,6 +8,10 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
+		<members>HMS_Live_Project_UtilityBar</members>
+		<name>FlexiPage</name>
+	</types>
+	<types>
 		<members>HMS_Consultant</members>
 		<name>PermissionSet</name>
 	</types>
