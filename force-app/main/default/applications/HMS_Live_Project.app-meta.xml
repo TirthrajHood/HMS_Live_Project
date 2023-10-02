@@ -14,7 +14,13 @@
     <label>HMS (Live Project)</label>
     <navType>Standard</navType>
     <setupExperience>all</setupExperience>
-    <tabs>standard-home</tabs>
+    <tabs>Home</tabs>
+    <tabs>Waiting_List</tabs>
+    <tabs>Old_Patients</tabs>
+    <tabs>Master_Information</tabs>
+    <tabs>Daily_Performance</tabs>
+    <tabs>Reports_Menu</tabs>
+    <tabs>Opd_Collection</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>HMS_Live_Project_UtilityBar</utilityBar>
 </CustomApplication>

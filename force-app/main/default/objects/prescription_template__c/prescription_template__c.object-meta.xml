@@ -159,7 +159,7 @@
         <label>id</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>prescription_emplates</pluralLabel>
+    <pluralLabel>prescription_templates</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
