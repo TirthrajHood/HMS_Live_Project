@@ -5,6 +5,14 @@
 		<name>ContentAsset</name>
 	</types>
 	<types>
+		<members>advice__c</members>
+		<members>complaint__c</members>
+		<members>consultant__c</members>
+		<members>diagnosis__c</members>
+		<members>dosage__c</members>
+		<members>dosage_instruction__c</members>
+		<members>followsup__c</members>
+		<members>instruction__c</members>
 		<members>past_history__c</members>
 		<members>patient1__c</members>
 		<members>prescription__c</members>
