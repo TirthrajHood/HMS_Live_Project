@@ -18,7 +18,11 @@
             </lightning-tab>
     
             <lightning-tab label="Past History">
-              
+              <lightning-datatable data={pastHistoryObj.data} columns={pastHis} key-field="Id"  hide-checkbox-column 
+                  onsave={handleSave1} draft-values={fieldsItemValue1}>
+              </lightning-datatable>
+            
+              <lightning-button variant="brand" label="Add New Details" onclick={click1} ></lightning-button>        
               
             </lightning-tab>
     
@@ -51,8 +55,8 @@
               
               
             </lightning-tab>
-    
-
+               
+          
                 <lightning-tab label="Advice" >
                       <h1>advice</h1>
                       
@@ -73,7 +77,7 @@
                   onsave={handleSave} draft-values={fieldsItemValue}>
                   </lightning-datatable>
             
-                      <lightning-button variant="brand" label="Add New Reff Doctor" onclick={click} ></lightning-button>
+                  <lightning-button variant="brand" label="Add New Reff Doctor" onclick={click} ></lightning-button>
   
                 </lightning-tab>
         
