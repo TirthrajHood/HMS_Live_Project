@@ -1,3 +1,82 @@
 <template>
-    <p>master</p>
+       
+        <lightning-tabset  active-tab-value="Complaints" variant="scoped">
+
+            <lightning-tab label="Complaints">
+              <h1>Complaints</h1>
+              
+            </lightning-tab>
+    
+            <lightning-tab label="Invastigations">
+              
+                <h1>invastigation</h1>
+            </lightning-tab>
+    
+            <lightning-tab label="Medicines">
+              
+              
+            </lightning-tab>
+    
+            <lightning-tab label="Past History">
+              
+              
+            </lightning-tab>
+    
+            <lightning-tab label="Dosage">
+              
+              
+            </lightning-tab>
+    
+            <lightning-tab label="Dosage Instruction">
+              
+              
+            </lightning-tab>
+    
+            <lightning-tab label="OPD Collection Head">
+              
+              
+            </lightning-tab>
+    
+            <lightning-tab label="Screening Templates">
+              
+              
+            </lightning-tab>
+    
+            <lightning-tab label="OPD Template">
+              
+              
+            </lightning-tab>
+    
+            <lightning-tab label="Instructions">
+              
+              
+            </lightning-tab>
+    
+
+                <lightning-tab label="Advice" >
+                      <h1>advice</h1>
+                      
+                </lightning-tab>
+        
+                <lightning-tab label="Consultants">
+                  
+                  <h1>consultant</h1>
+                </lightning-tab>
+        
+                <lightning-tab label="Diagnosis">
+                  
+                  
+                </lightning-tab>
+        
+                <lightning-tab label="Refer Doctor">
+                  <lightning-datatable data={refDocObj.data} columns={Column} key-field="Id"  hide-checkbox-column 
+                  onsave={handleSave} draft-values={fieldsItemValue}>
+                  </lightning-datatable>
+            
+                      <lightning-button variant="brand" label="Add New Reff Doctor" onclick={click} ></lightning-button>
+  
+                </lightning-tab>
+        
+             </lightning-tabset>
+   
 </template>

@@ -4,6 +4,10 @@
         <application>HMS_Live_Project</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>RefDocList</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <fieldPermissions>
         <editable>true</editable>
         <field>past_history__c.pastHistory__c</field>
