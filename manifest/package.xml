@@ -24,15 +24,7 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>Daily_Performance</members>
-		<members>Home</members>
-		<members>Master_Information</members>
-		<members>Old_Patients</members>
-		<members>Opd_Collection</members>
-		<members>Reports_Menu</members>
-		<members>Waiting_List</members>
-		<members>past_history__c</members>
-		<members>ref_by__c</members>
+		<members>complaints__c</members>
 		<name>CustomTab</name>
 	</types>
 	<types>

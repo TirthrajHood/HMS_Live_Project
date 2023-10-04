@@ -13,6 +13,11 @@ import { refreshApex } from '@salesforce/apex';
  import pastHistory from '@salesforce/apex/RefDocList.pastHis';
  import modelChildPastHistry from 'c/modelChildPastHistry';
  //Past History tab logic end
+
+ //Past Complaint tab logic start
+ import comp from '@salesforce/apex/RefDocList.complaint';
+ import modelChildComplaints from 'c/modelChildComplaints';
+ //Past Complaint tab logic end
 export default class Master_Information extends LightningElement {
     //Refer Doctor tab logic start
 
@@ -101,7 +106,7 @@ export default class Master_Information extends LightningElement {
               message:'Record Update Successfully!!',
               variant:'success'
           }));
-          this.fieldsItemValue=[];
+          this.fieldsItemValue1=[];
           return this.refresh1(); 
         }).catch(error =>{
           console.log('error',error);
@@ -127,5 +132,57 @@ export default class Master_Information extends LightningElement {
         }
    //Past History tab logic end
 
+   //Past Complaint tab logic start
+   @track complaintObj;
+   @track comp1 = [
+     {label:'Complaints', fieldName:'complaint__c', type:'text', editable:true}];
+
+     @wire (comp) cons2(com){
+       this.complaintObj=com;
+       if(com.error){
+         this.complaintObj=undefined;
+       }
+     };
+
+     fieldsItemValue2=[];
+     handleSave2(event){
+       this.fieldsItemValue2=event.detail.draftValues;
+       const inputItems=this.fieldsItemValue2.slice().map(draft =>{
+         const fields=Object.assign({}, draft);
+         return {fields};
+       });
+       const promises= inputItems.map(recordInput => updateRecord(recordInput));
+       Promise.all(promises).then(res =>{
+         console.log('rse',res);
+         this.dispatchEvent(new ShowToastEvent({
+             title: 'Success',
+             message:'Record Update Successfully!!',
+             variant:'success'
+         }));
+         this.fieldsItemValue2=[];
+         return this.refresh2(); 
+       }).catch(error =>{
+         console.log('error',error);
+         this.dispatchEvent(new ShowToastEvent({
+             title: 'Error',
+             message:'An Error Occured!!',
+             variant:'error'
+         }));
+       }).finally(() =>{
+         this.fieldsItemValue2=[];
+       });
+     }
+     async refresh2(){
+         await refreshApex(this.complaintObj)
+     }
+
+     async click2(){
+       const result=await modelChildComplaints.open({
+        size:"small"
+       });
+       this.refresh2(); 
+                 
+       }
+  //Past Complaint tab logic end
 
     }

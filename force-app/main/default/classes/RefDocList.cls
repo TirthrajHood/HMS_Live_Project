@@ -12,4 +12,11 @@ public with sharing class RefDocList {
        return [SELECT pastHistory__c FROM past_history__c];
   }
   //Past History tab logic end
+
+  //Past Complaint tab logic start
+  @AuraEnabled(cacheable=true)
+    public static List<complaints__c> complaint(){
+       return [SELECT complaint__c FROM complaints__c];
+  }
+  //Past Complaint tab logic end 
 }

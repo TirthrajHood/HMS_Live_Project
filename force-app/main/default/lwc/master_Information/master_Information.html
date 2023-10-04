@@ -3,7 +3,12 @@
         <lightning-tabset  active-tab-value="Complaints" variant="scoped">
 
             <lightning-tab label="Complaints">
-              <h1>Complaints</h1>
+              <lightning-datatable data={complaintObj.data} columns={comp1} key-field="Id"  hide-checkbox-column 
+                  onsave={handleSave2} draft-values={fieldsItemValue2}>
+              </lightning-datatable>
+            
+              <lightning-button variant="brand" label="Add New Complaints" onclick={click2} ></lightning-button>        
+              
               
             </lightning-tab>
     
