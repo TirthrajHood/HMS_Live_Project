@@ -18,6 +18,11 @@ import { refreshApex } from '@salesforce/apex';
  import comp from '@salesforce/apex/RefDocList.complaint';
  import modelChildComplaints from 'c/modelChildComplaints';
  //Past Complaint tab logic end
+
+ //Past Investigation tab logic start
+ import Invest from '@salesforce/apex/RefDocList.invest';
+ import modelChildComponentInvestigation from 'c/modelChildComponentInvestigation';
+ //Past Investigation tab logic end
 export default class Master_Information extends LightningElement {
     //Refer Doctor tab logic start
 
@@ -184,5 +189,59 @@ export default class Master_Information extends LightningElement {
                  
        }
   //Past Complaint tab logic end
+
+  //Past Investigation tab logic start
+  @track InvastObj;
+  @track inv = [
+    {label:'Invastigations', fieldName:'investigations__c', type:'text', editable:true}];
+
+    @wire (Invest) cons3(invs){
+      this.InvastObj=invs;
+      if(invs.error){
+        this.InvastObj=undefined;
+      }
+    };
+
+    fieldsItemValue3=[];
+    handleSave3(event){
+      this.fieldsItemValue3=event.detail.draftValues;
+      const inputItems=this.fieldsItemValue3.slice().map(draft =>{
+        const fields=Object.assign({}, draft);
+        return {fields};
+      });
+      const promises= inputItems.map(recordInput => updateRecord(recordInput));
+      Promise.all(promises).then(res =>{
+        console.log('rse',res);
+        this.dispatchEvent(new ShowToastEvent({
+            title: 'Success',
+            message:'Record Update Successfully!!',
+            variant:'success'
+        }));
+        this.fieldsItemValue3=[];
+        return this.refresh3(); 
+      }).catch(error =>{
+        console.log('error',error);
+        this.dispatchEvent(new ShowToastEvent({
+            title: 'Error',
+            message:'An Error Occured!!',
+            variant:'error'
+        }));
+      }).finally(() =>{
+        this.fieldsItemValue3=[];
+      });
+    }
+    async refresh3(){
+        await refreshApex(this.InvastObj)
+    }
+
+    async click3(){
+      const result=await modelChildComponentInvestigation.open({
+       size:"small"
+      });
+      this.refresh3(); 
+                
+      }
+ //Past Investigation tab logic end
+
 
     }

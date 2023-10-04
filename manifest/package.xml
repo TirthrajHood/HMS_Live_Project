@@ -17,7 +17,7 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>complaints__c</members>
+		<members>investigation__c</members>
 		<name>CustomTab</name>
 	</types>
 	<types>

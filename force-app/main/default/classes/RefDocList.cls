@@ -19,4 +19,11 @@ public with sharing class RefDocList {
        return [SELECT complaint__c FROM complaints__c];
   }
   //Past Complaint tab logic end 
+
+  //Past Investigation tab logic start
+  @AuraEnabled(cacheable=true)
+    public static List<investigation__c> invest(){
+       return [SELECT investigations__c FROM investigation__c];
+  }
+  //Past Investigation tab logic end 
 }

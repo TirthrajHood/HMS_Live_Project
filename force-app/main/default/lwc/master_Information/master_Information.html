@@ -3,18 +3,23 @@
         <lightning-tabset  active-tab-value="Complaints" variant="scoped">
 
             <lightning-tab label="Complaints">
+
               <lightning-datatable data={complaintObj.data} columns={comp1} key-field="Id"  hide-checkbox-column 
                   onsave={handleSave2} draft-values={fieldsItemValue2}>
               </lightning-datatable>
             
               <lightning-button variant="brand" label="Add New Complaints" onclick={click2} ></lightning-button>        
               
-              
             </lightning-tab>
     
             <lightning-tab label="Invastigations">
               
-                <h1>invastigation</h1>
+              <lightning-datatable data={InvastObj.data} columns={inv} key-field="Id"  hide-checkbox-column 
+               onsave={handleSave3} draft-values={fieldsItemValue3}>
+              </lightning-datatable>
+        
+              <lightning-button variant="brand" label="Add New Investigation Data" onclick={click3} ></lightning-button>
+
             </lightning-tab>
     
             <lightning-tab label="Medicines">
