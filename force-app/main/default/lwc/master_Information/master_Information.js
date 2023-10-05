@@ -26,8 +26,14 @@ import { refreshApex } from '@salesforce/apex';
  //Past Investigation tab logic end
 
  //Medicines tab logic start
-
+ import Med from '@salesforce/apex/RefDocList.medicine';
+ import modelChildMedicines from 'c/modelChildMedicines';
  //Medicines tab logic end
+
+ //Doceges tab logic start
+ import Dose from '@salesforce/apex/RefDocList.Dosage';
+ import modelChildDosages from 'c/modelChildDosages';
+ //Dosages tab logic end
 export default class Master_Information extends LightningElement {
 
 //Past Complaint tab logic start
@@ -218,6 +224,97 @@ export default class Master_Information extends LightningElement {
 
 //Medicines tab logic start
 
+@track MedicinesObj;
+@track med = [
+{label:'Name', fieldName:'name__c', type:'text', editable:true},
+{label:'Prefix', fieldName:'prefix__c', type:'text', editable:true},
+{label:'Generic', fieldName:'generic__c', type:'text', editable:true},
+{
+  type: "button-icon", label: '', initialWidth: 20, typeAttributes: {
+      label: 'Delete',
+      name: 'Delete',
+      title: 'Delete',
+      disabled: false,
+      value: 'delete',
+      iconPosition: 'left',
+      iconName:'utility:delete',
+      variant:'destructive' }
+  }];
+
+@wire (Med) med1(meds1){
+  this.MedicinesObj=meds1;
+  if(meds1.error){
+    this.MedicinesObj=undefined;
+  }
+};
+
+fieldsItemValue4=[];
+handleSave4(event){
+  this.fieldsItemValue4=event.detail.draftValues;
+  const inputItems=this.fieldsItemValue4.slice().map(draft =>{
+    const fields=Object.assign({}, draft);
+    return {fields};
+  });
+  const promises= inputItems.map(recordInput => updateRecord(recordInput));
+  Promise.all(promises).then(res =>{
+    console.log('rse',res);
+    this.dispatchEvent(new ShowToastEvent({
+        title: 'Success',
+        message:'Record Update Successfully!!',
+        variant:'success'
+    }));
+    this.fieldsItemValue4=[];
+    return this.refresh4(); 
+  }).catch(error =>{
+    console.log('error',error);
+    this.dispatchEvent(new ShowToastEvent({
+        title: 'Error',
+        message:'An Error Occured!!',
+        variant:'error'
+    }));
+  }).finally(() =>{
+    this.fieldsItemValue4=[];
+  });
+}
+async refresh4(){
+    await refreshApex(this.MedicinesObj)
+}
+
+async click4(){
+  const result=await modelChildMedicines.open({
+   size:"small"
+  });
+  this.refresh4(); 
+            
+  }
+
+  handleRowAction2(event){
+    const recId = event.detail.row.Id;
+    const actionName = event.detail.action.name;
+    if (actionName === 'Delete') {
+        this.handleDeleteRow2(recId);
+    }
+  }
+
+    handleDeleteRow2(recordIdToDelete) {
+      deleteRecord(recordIdToDelete)
+          .then(result => {
+              this.showToast('Success!!', 'Record deleted successfully!!', 'success', 'dismissable');
+              return this.refresh4();
+          }).catch(error => {
+              this.error = error;
+          });
+        }
+
+        showToast(title, message, variant, mode) {
+          const evt = new ShowToastEvent({
+              title: title,
+              message: message,
+              variant: variant,
+              mode: mode
+          });
+          this.dispatchEvent(evt);
+        }
    
  //Medicines tab logic end
 
@@ -312,6 +409,97 @@ export default class Master_Information extends LightningElement {
         }
              
 //Past History tab logic end
+
+//Dosages tab logic start
+@track dosagesObj;
+@track dos = [
+  {label:'Dosages', fieldName:'dosage__c', type:'text', editable:true},
+  {
+    type: "button-icon", label: '', initialWidth: 20, typeAttributes: {
+        label: 'Delete',
+        name: 'Delete',
+        title: 'Delete',
+        disabled: false,
+        value: 'delete',
+        iconPosition: 'left',
+        iconName:'utility:delete',
+        variant:'destructive' }
+    }];
+
+  @wire (Dose) dos1(dosage){
+    this.dosagesObj=dosage;
+    if(dosage.error){
+      this.dosagesObj=undefined;
+    }
+  };
+
+  fieldsItemValue5=[];
+  handleSave5(event){
+    this.fieldsItemValue5=event.detail.draftValues;
+    const inputItems=this.fieldsItemValue5.slice().map(draft =>{
+      const fields=Object.assign({}, draft);
+      return {fields};
+    });
+    const promises= inputItems.map(recordInput => updateRecord(recordInput));
+    Promise.all(promises).then(res =>{
+      console.log('rse',res);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Success',
+          message:'Record Update Successfully!!',
+          variant:'success'
+      }));
+      this.fieldsItemValue5=[];
+      return this.refresh5(); 
+    }).catch(error =>{
+      console.log('error',error);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Error',
+          message:'An Error Occured!!',
+          variant:'error'
+      }));
+    }).finally(() =>{
+      this.fieldsItemValue5=[];
+    });
+  }
+  async refresh5(){
+      await refreshApex(this.dosagesObj)
+  }
+
+  async click5(){
+    const result=await modelChildDosages.open({
+     size:"small"
+    });
+    this.refresh5(); 
+  }
+
+  handleRowAction5(event){
+    const recId = event.detail.row.Id;
+    const actionName = event.detail.action.name;
+    if (actionName === 'Delete') {
+        this.handleDeleteRow5(recId);
+    }
+  }
+
+    handleDeleteRow5(recordIdToDelete) {
+      deleteRecord(recordIdToDelete)
+          .then(result => {
+              this.showToast('Success!!', 'Record deleted successfully!!', 'success', 'dismissable');
+              return this.refresh5();
+          }).catch(error => {
+              this.error = error;
+          });
+        }
+
+        showToast(title, message, variant, mode) {
+          const evt = new ShowToastEvent({
+              title: title,
+              message: message,
+              variant: variant,
+              mode: mode
+          });
+          this.dispatchEvent(evt);
+        }
+//Dosages tab logic end
 
 //Refer Doctor tab logic start
 

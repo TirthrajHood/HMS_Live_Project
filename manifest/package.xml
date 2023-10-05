@@ -17,7 +17,7 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>medicines__c</members>
+		<members>dosages__c</members>
 		<name>CustomTab</name>
 	</types>
 	<types>

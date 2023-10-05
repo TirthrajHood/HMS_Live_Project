@@ -28,7 +28,16 @@ public with sharing class RefDocList {
   //Past Investigation tab logic end 
 
   // Medicines Tab logic start
-  
+  @AuraEnabled(cacheable=true)
+  public static List<medicines__c> medicine(){
+     return [SELECT name__c, prefix__c, generic__c FROM medicines__c];
+  }
   // Medicines Tab logic end
-}
 
+  // Dosages Tab logic start
+  @AuraEnabled(cacheable=true)
+  public static List<dosages__c> Dosage(){
+     return [SELECT dosage__c FROM dosages__c];
+  }
+  // Dosages Tab logic end
+}

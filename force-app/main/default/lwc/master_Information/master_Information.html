@@ -24,6 +24,12 @@
     
             <lightning-tab label="Medicines">
       
+              <lightning-datatable data={MedicinesObj.data} columns={med} key-field="Id"  hide-checkbox-column 
+              onsave={handleSave4} draft-values={fieldsItemValue4} onrowaction={handleRowAction2}>
+             </lightning-datatable>
+       
+             <lightning-button variant="brand" label="Add New Medicine" onclick={click4} ></lightning-button>
+
             </lightning-tab>
     
             <lightning-tab label="Past History">
@@ -37,6 +43,11 @@
     
             <lightning-tab label="Dosage">
               
+              <lightning-datatable data={dosagesObj.data} columns={dos} key-field="Id"  hide-checkbox-column 
+              onsave={handleSave5} draft-values={fieldsItemValue5} onrowaction={handleRowAction5}>
+             </lightning-datatable>
+       
+             <lightning-button variant="brand" label="Add New Dosage" onclick={click5} ></lightning-button>
               
             </lightning-tab>
     
