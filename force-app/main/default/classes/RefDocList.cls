@@ -26,4 +26,9 @@ public with sharing class RefDocList {
        return [SELECT investigations__c FROM investigation__c];
   }
   //Past Investigation tab logic end 
+
+  // Medicines Tab logic start
+  
+  // Medicines Tab logic end
 }
+

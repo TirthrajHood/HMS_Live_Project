@@ -20,6 +20,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>medicines__c.generic__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>medicines__c.name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>medicines__c.prefix__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>past_history__c.pastHistory__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -314,6 +329,15 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>medicines__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>past_history__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -406,6 +430,10 @@
     </tabSettings>
     <tabSettings>
         <tab>Waiting_List</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>medicines__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
 </PermissionSet>

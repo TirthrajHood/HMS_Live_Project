@@ -5,7 +5,7 @@
             <lightning-tab label="Complaints">
 
               <lightning-datatable data={complaintObj.data} columns={comp1} key-field="Id"  hide-checkbox-column 
-                  onsave={handleSave2} draft-values={fieldsItemValue2}>
+                  onsave={handleSave2} draft-values={fieldsItemValue2} onrowaction={handleRowAction}>
               </lightning-datatable>
             
               <lightning-button variant="brand" label="Add New Complaints" onclick={click2} ></lightning-button>        
@@ -15,7 +15,7 @@
             <lightning-tab label="Invastigations">
               
               <lightning-datatable data={InvastObj.data} columns={inv} key-field="Id"  hide-checkbox-column 
-               onsave={handleSave3} draft-values={fieldsItemValue3}>
+               onsave={handleSave3} draft-values={fieldsItemValue3} onrowaction={handleRowAction1}>
               </lightning-datatable>
         
               <lightning-button variant="brand" label="Add New Investigation Data" onclick={click3} ></lightning-button>
@@ -23,15 +23,14 @@
             </lightning-tab>
     
             <lightning-tab label="Medicines">
-              
-              
+      
             </lightning-tab>
     
             <lightning-tab label="Past History">
               <lightning-datatable data={pastHistoryObj.data} columns={pastHis} key-field="Id"  hide-checkbox-column 
-                  onsave={handleSave1} draft-values={fieldsItemValue1}>
+                  onsave={handleSave1} draft-values={fieldsItemValue1} onrowaction={handleRowAction4} >
               </lightning-datatable>
-            
+                 
               <lightning-button variant="brand" label="Add New Details" onclick={click1} ></lightning-button>        
               
             </lightning-tab>
@@ -84,7 +83,7 @@
         
                 <lightning-tab label="Refer Doctor">
                   <lightning-datatable data={refDocObj.data} columns={Column} key-field="Id"  hide-checkbox-column 
-                  onsave={handleSave} draft-values={fieldsItemValue}>
+                  onsave={handleSave} draft-values={fieldsItemValue} onrowaction={handleRowAction14}>
                   </lightning-datatable>
             
                   <lightning-button variant="brand" label="Add New Reff Doctor" onclick={click} ></lightning-button>
