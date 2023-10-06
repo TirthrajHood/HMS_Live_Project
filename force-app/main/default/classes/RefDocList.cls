@@ -40,4 +40,25 @@ public with sharing class RefDocList {
      return [SELECT dosage__c FROM dosages__c];
   }
   // Dosages Tab logic end
+
+   // Advices Tab logic start
+  @AuraEnabled(cacheable=true)
+  public static List<advices__c> Advices(){
+     return [SELECT advice__c FROM advices__c];
+  }
+  // Advices Tab logic end
+
+  // Consultant Tab logic start
+  @AuraEnabled(cacheable=true)
+  public static List<consultant__c> Consultant(){
+     return [SELECT consultantName__c FROM consultant__c];
+  }
+  // Consultant Tab logic end
+
+  // Diagnosis Tab logic start
+  @AuraEnabled(cacheable=true)
+  public static List<diagnosiss__c> diagnosis(){
+     return [SELECT diagnosis__c FROM diagnosiss__c];
+  }
+  // Diagnosis Tab logic end
 }

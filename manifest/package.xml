@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>X87872996_hospitallogoblackandwhiteh</members>
-		<name>ContentAsset</name>
-	</types>
-	<types>
-		<members>instruction__c</members>
-		<members>investigation__c</members>
-		<members>med_prefix__c</members>
-		<members>medicines__c</members>
-		<members>opd_bill__c</members>
-		<members>opd_collection__c</members>
-		<members>opd_collection_head__c</members>
-		<members>opd_paper__c</members>
-		<members>particular__c</members>
-		<name>CustomObject</name>
-	</types>
-	<types>
-		<members>dosages__c</members>
+		<members>advices__c</members>
+		<members>consultant__c</members>
+		<members>diagnosiss__c</members>
 		<name>CustomTab</name>
-	</types>
-	<types>
-		<members>HMS_Live_Project_UtilityBar</members>
-		<name>FlexiPage</name>
 	</types>
 	<types>
 		<members>HMS_Consultant</members>

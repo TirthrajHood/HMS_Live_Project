@@ -34,6 +34,21 @@ import { refreshApex } from '@salesforce/apex';
  import Dose from '@salesforce/apex/RefDocList.Dosage';
  import modelChildDosages from 'c/modelChildDosages';
  //Dosages tab logic end
+
+ //Advice tab logic start
+ import Adv from '@salesforce/apex/RefDocList.Advices';
+ import modelChildAdvice from 'c/modelChildAdvice';
+ //Advice tab logic end
+
+ //Consultant tab logic start
+ import Consult from '@salesforce/apex/RefDocList.Consultant';
+ import modelChildConsultant from 'c/modelChildConsultant';
+ //Consultant tab logic end
+
+ //Diagnosis tab logic start
+ import Diagnosis from '@salesforce/apex/RefDocList.diagnosis';
+ import modelChildDignosis from 'c/modelChildDignosis';
+ //Diagnosis tab logic end
 export default class Master_Information extends LightningElement {
 
 //Past Complaint tab logic start
@@ -500,6 +515,285 @@ async click4(){
           this.dispatchEvent(evt);
         }
 //Dosages tab logic end
+
+//Advice tab logic start
+@track adviceObj;
+@track ad = [
+  {label:'Advice', fieldName:'advice__c', type:'text', editable:true},
+  {
+    type: "button-icon", label: '', initialWidth: 20, typeAttributes: {
+        label: 'Delete',
+        name: 'Delete',
+        title: 'Delete',
+        disabled: false,
+        value: 'delete',
+        iconPosition: 'left',
+        iconName:'utility:delete',
+        variant:'destructive' }
+    }];
+
+  @wire (Adv) adv1(advc){
+    this.adviceObj=advc;
+    if(advc.error){
+      this.adviceObj=undefined;
+    }
+  };
+
+  fieldsItemValue11=[];
+  handleSave11(event){
+    this.fieldsItemValue11=event.detail.draftValues;
+    const inputItems=this.fieldsItemValue11.slice().map(draft =>{
+      const fields=Object.assign({}, draft);
+      return {fields};
+    });
+    const promises= inputItems.map(recordInput => updateRecord(recordInput));
+    Promise.all(promises).then(res =>{
+      console.log('rse',res);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Success',
+          message:'Record Update Successfully!!',
+          variant:'success'
+      }));
+      this.fieldsItemValue11=[];
+      return this.refresh11(); 
+    }).catch(error =>{
+      console.log('error',error);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Error',
+          message:'An Error Occured!!',
+          variant:'error'
+      }));
+    }).finally(() =>{
+      
+      this.fieldsItemValue11=[];
+    });
+  }
+   
+  async refresh11(){
+      await refreshApex(this.adviceObj)
+  }
+
+  async click11(){
+    const result=await modelChildAdvice.open({
+     size:"small"
+    });
+    this.refresh11(); 
+  }
+
+  handleRowAction11(event){
+    const recId = event.detail.row.Id;
+    const actionName = event.detail.action.name;
+    if (actionName === 'Delete') {
+        this.handleDeleteRow11(recId);
+    }
+  }
+
+    handleDeleteRow11(recordIdToDelete) {
+      deleteRecord(recordIdToDelete)
+          .then(result => {
+              this.showToast('Success!!', 'Record deleted successfully!!', 'success', 'dismissable');
+              return this.refresh11();
+          }).catch(error => {
+              this.error = error;
+          });
+        }
+
+        showToast(title, message, variant, mode) {
+          const evt = new ShowToastEvent({
+              title: title,
+              message: message,
+              variant: variant,
+              mode: mode
+          });
+          this.dispatchEvent(evt);
+        }
+//Advice tab logic end
+
+//Consultant tab logic start
+@track consultantObj;
+@track cons = [
+  {label:'Consultants', fieldName:'consultantName__c', type:'text', editable:true},
+  {
+    type: "button-icon", label: '', initialWidth: 20, typeAttributes: {
+        label: 'Delete',
+        name: 'Delete',
+        title: 'Delete',
+        disabled: false,
+        value: 'delete',
+        iconPosition: 'left',
+        iconName:'utility:delete',
+        variant:'destructive' }
+    }];
+
+  @wire (Consult) co(co1){
+    this.consultantObj=co1;
+    if(co1.error){
+      this.consultantObj=undefined;
+    }
+  };
+
+  fieldsItemValue12=[];
+  handleSave12(event){
+    this.fieldsItemValue12=event.detail.draftValues;
+    const inputItems=this.fieldsItemValue12.slice().map(draft =>{
+      const fields=Object.assign({}, draft);
+      return {fields};
+    });
+    const promises= inputItems.map(recordInput => updateRecord(recordInput));
+    Promise.all(promises).then(res =>{
+      console.log('rse',res);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Success',
+          message:'Record Update Successfully!!',
+          variant:'success'
+      }));
+      this.fieldsItemValue12=[];
+      return this.refresh12(); 
+    }).catch(error =>{
+      console.log('error',error);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Error',
+          message:'An Error Occured!!',
+          variant:'error'
+      }));
+    }).finally(() =>{
+      
+      this.fieldsItemValue12=[];
+    });
+  }
+   
+  async refresh12(){
+      await refreshApex(this.consultantObj)
+  }
+
+  async click12(){
+    const result=await modelChildConsultant.open({
+     size:"small"
+    });
+    this.refresh12(); 
+  }
+
+  handleRowAction12(event){
+    const recId = event.detail.row.Id;
+    const actionName = event.detail.action.name;
+    if (actionName === 'Delete') {
+        this.handleDeleteRow12(recId);
+    }
+  }
+
+    handleDeleteRow12(recordIdToDelete) {
+      deleteRecord(recordIdToDelete)
+          .then(result => {
+              this.showToast('Success!!', 'Record deleted successfully!!', 'success', 'dismissable');
+              return this.refresh12();
+          }).catch(error => {
+              this.error = error;
+          });
+        }
+
+        showToast(title, message, variant, mode) {
+          const evt = new ShowToastEvent({
+              title: title,
+              message: message,
+              variant: variant,
+              mode: mode
+          });
+          this.dispatchEvent(evt);
+        }
+//Consultant tab logic end
+
+//Diagnosis tab logic start
+@track diagnosisObj;
+@track diag = [
+  {label:'Diagnosis', fieldName:'diagnosis__c', type:'text', editable:true},
+  {
+    type: "button-icon", label: '', initialWidth: 20, typeAttributes: {
+        label: 'Delete',
+        name: 'Delete',
+        title: 'Delete',
+        disabled: false,
+        value: 'delete',
+        iconPosition: 'left',
+        iconName:'utility:delete',
+        variant:'destructive' }
+    }];
+
+  @wire (Diagnosis) di(dia){
+    this.diagnosisObj=dia;
+    if(dia.error){
+      this.diagnosisObj=undefined;
+    }
+  };
+
+  fieldsItemValue13=[];
+  handleSave13(event){
+    this.fieldsItemValue13=event.detail.draftValues;
+    const inputItems=this.fieldsItemValue13.slice().map(draft =>{
+      const fields=Object.assign({}, draft);
+      return {fields};
+    });
+    const promises= inputItems.map(recordInput => updateRecord(recordInput));
+    Promise.all(promises).then(res =>{
+      console.log('rse',res);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Success',
+          message:'Record Update Successfully!!',
+          variant:'success'
+      }));
+      this.fieldsItemValue13=[];
+      return this.refresh13(); 
+    }).catch(error =>{
+      console.log('error',error);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Error',
+          message:'An Error Occured!!',
+          variant:'error'
+      }));
+    }).finally(() =>{
+      
+      this.fieldsItemValue13=[];
+    });
+  }
+   
+  async refresh13(){
+      await refreshApex(this.diagnosisObj)
+  }
+
+  async click13(){
+    const result=await modelChildDignosis.open({
+     size:"small"
+    });
+    this.refresh13(); 
+  }
+
+  handleRowAction13(event){
+    const recId = event.detail.row.Id;
+    const actionName = event.detail.action.name;
+    if (actionName === 'Delete') {
+        this.handleDeleteRow13(recId);
+    }
+  }
+
+    handleDeleteRow13(recordIdToDelete) {
+      deleteRecord(recordIdToDelete)
+          .then(result => {
+              this.showToast('Success!!', 'Record deleted successfully!!', 'success', 'dismissable');
+              return this.refresh13();
+          }).catch(error => {
+              this.error = error;
+          });
+        }
+
+        showToast(title, message, variant, mode) {
+          const evt = new ShowToastEvent({
+              title: title,
+              message: message,
+              variant: variant,
+              mode: mode
+          });
+          this.dispatchEvent(evt);
+        }
+//Diagnosis tab logic end
 
 //Refer Doctor tab logic start
 

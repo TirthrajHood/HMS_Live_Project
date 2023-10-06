@@ -78,18 +78,33 @@
                
           
                 <lightning-tab label="Advice" >
-                      <h1>advice</h1>
+
+                  <lightning-datatable data={adviceObj.data} columns={ad} key-field="Id"  hide-checkbox-column 
+                  onsave={handleSave11} draft-values={fieldsItemValue11} onrowaction={handleRowAction11}>
+                 </lightning-datatable>
+           
+                 <lightning-button variant="brand" label="Add New Advice" onclick={click11} ></lightning-button>
                       
                 </lightning-tab>
         
                 <lightning-tab label="Consultants">
-                  
-                  <h1>consultant</h1>
+
+                  <lightning-datatable data={consultantObj.data} columns={cons} key-field="Id"  hide-checkbox-column 
+                  onsave={handleSave12} draft-values={fieldsItemValue12} onrowaction={handleRowAction12}>
+                 </lightning-datatable>
+           
+                 <lightning-button variant="brand" label="Add New Consultant" onclick={click12} ></lightning-button>
+                      
                 </lightning-tab>
         
                 <lightning-tab label="Diagnosis">
                   
-                  
+                  <lightning-datatable data={diagnosisObj.data} columns={diag} key-field="Id"  hide-checkbox-column 
+                  onsave={handleSave13} draft-values={fieldsItemValue13} onrowaction={handleRowAction13}>
+                 </lightning-datatable>
+           
+                 <lightning-button variant="brand" label="Add New Dignosis Data" onclick={click13} ></lightning-button>
+
                 </lightning-tab>
         
                 <lightning-tab label="Refer Doctor">
