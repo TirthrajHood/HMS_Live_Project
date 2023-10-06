@@ -53,15 +53,26 @@
     
             <lightning-tab label="Dosage Instruction">
               
+              <lightning-datatable data={dosagesInsObj.data} columns={dosInstr} key-field="Id"  hide-checkbox-column 
+              onsave={handleSave6} draft-values={fieldsItemValue6} onrowaction={handleRowAction6}>
+             </lightning-datatable>
+       
+             <lightning-button variant="brand" label="Add New Dosage Instruction" onclick={click6} ></lightning-button>
               
             </lightning-tab>
     
             <lightning-tab label="OPD Collection Head">
               
+              <lightning-datatable data={opHeadObj.data} columns={opHead} key-field="Id"  hide-checkbox-column 
+              onsave={handleSave7} draft-values={fieldsItemValue7} onrowaction={handleRowAction7}>
+             </lightning-datatable>
+       
+             <lightning-button variant="brand" label="Add New OPD Collection Head Data" onclick={click7} ></lightning-button>
               
             </lightning-tab>
     
             <lightning-tab label="Screening Templates">
+              
               
               
             </lightning-tab>

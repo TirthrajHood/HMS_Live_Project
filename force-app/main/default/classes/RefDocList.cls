@@ -61,4 +61,18 @@ public with sharing class RefDocList {
      return [SELECT diagnosis__c FROM diagnosiss__c];
   }
   // Diagnosis Tab logic end
+
+  // Dosage Instruction Tab logic start
+  @AuraEnabled(cacheable=true)
+  public static List<dosage_instructions__c> dosIns(){
+     return [SELECT dosageInstruction__c FROM dosage_instructions__c];
+  }
+  // Dosage Instruction Tab logic end
+
+  // OPD Collection Head Tab logic start
+  @AuraEnabled(cacheable=true)
+  public static List<opd_collection_head__c> opdColHead(){
+     return [SELECT particulars__c, charges__c FROM opd_collection_head__c];
+  }
+  // OPD Collection Head Tab logic end
 }

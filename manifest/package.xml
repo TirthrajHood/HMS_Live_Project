@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>advices__c</members>
-		<members>consultant__c</members>
-		<members>diagnosiss__c</members>
+		<members>dosage_instructions__c</members>
+		<members>opd_collection_head__c</members>
 		<name>CustomTab</name>
-	</types>
-	<types>
-		<members>HMS_Consultant</members>
-		<name>PermissionSet</name>
 	</types>
 	<version>55.0</version>
 </Package>

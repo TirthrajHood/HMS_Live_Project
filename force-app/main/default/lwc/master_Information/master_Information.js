@@ -49,6 +49,16 @@ import { refreshApex } from '@salesforce/apex';
  import Diagnosis from '@salesforce/apex/RefDocList.diagnosis';
  import modelChildDignosis from 'c/modelChildDignosis';
  //Diagnosis tab logic end
+
+ //Dosage Instruction tab logic start
+ import DoseInst from '@salesforce/apex/RefDocList.dosIns';
+ import modelChildDosageInstruction from 'c/modelChildDosageInstruction';
+ //Dosage Instruction tab logic end
+
+ //OPD Collection Head tab logic start
+ import OPDHead from '@salesforce/apex/RefDocList.opdColHead';
+ import modelChildOPDCollHead from 'c/modelChildOPDCollHead';
+ //OPD Collection Head tab logic end
 export default class Master_Information extends LightningElement {
 
 //Past Complaint tab logic start
@@ -515,6 +525,189 @@ async click4(){
           this.dispatchEvent(evt);
         }
 //Dosages tab logic end
+
+//Dosages Instruction tab logic start
+@track dosagesInsObj;
+@track dosInstr = [
+  {label:'Dosages Instruction', fieldName:'dosageInstruction__c', type:'text', editable:true},
+  {
+    type: "button-icon", label: '', initialWidth: 20, typeAttributes: {
+        label: 'Delete',
+        name: 'Delete',
+        title: 'Delete',
+        disabled: false,
+        value: 'delete',
+        iconPosition: 'left',
+        iconName:'utility:delete',
+        variant:'destructive' }
+    }];
+
+  @wire (DoseInst) dosInst1(dosageInst){
+    this.dosagesInsObj=dosageInst;
+    if(dosageInst.error){
+      this.dosagesInsObj=undefined;
+    }
+  };
+
+  fieldsItemValue6=[];
+  handleSave6(event){
+    this.fieldsItemValue6=event.detail.draftValues;
+    const inputItems=this.fieldsItemValue6.slice().map(draft =>{
+      const fields=Object.assign({}, draft);
+      return {fields};
+    });
+    const promises= inputItems.map(recordInput => updateRecord(recordInput));
+    Promise.all(promises).then(res =>{
+      console.log('rse',res);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Success',
+          message:'Record Update Successfully!!',
+          variant:'success'
+      }));
+      this.fieldsItemValue6=[];
+      return this.refresh6(); 
+    }).catch(error =>{
+      console.log('error',error);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Error',
+          message:'An Error Occured!!',
+          variant:'error'
+      }));
+    }).finally(() =>{
+      this.fieldsItemValue6=[];
+    });
+  }
+  async refresh6(){
+      await refreshApex(this.dosagesInsObj)
+  }
+
+  async click6(){
+    const result=await modelChildDosageInstruction.open({
+     size:"small"
+    });
+    this.refresh6(); 
+  }
+
+  handleRowAction6(event){
+    const recId = event.detail.row.Id;
+    const actionName = event.detail.action.name;
+    if (actionName === 'Delete') {
+        this.handleDeleteRow6(recId);
+    }
+  }
+
+    handleDeleteRow6(recordIdToDelete) {
+      deleteRecord(recordIdToDelete)
+          .then(result => {
+              this.showToast('Success!!', 'Record deleted successfully!!', 'success', 'dismissable');
+              return this.refresh6();
+          }).catch(error => {
+              this.error = error;
+          });
+        }
+
+        showToast(title, message, variant, mode) {
+          const evt = new ShowToastEvent({
+              title: title,
+              message: message,
+              variant: variant,
+              mode: mode
+          });
+          this.dispatchEvent(evt);
+        }
+//Dosages Instruction tab logic end
+
+//OPD Collection Head tab logic start
+@track opHeadObj;
+@track opHead = [
+  {label:'Particulars', fieldName:'particulars__c', type:'text', editable:true},
+  {label:'Charges', fieldName:'charges__c', type:'text', editable:true},
+  {
+    type: "button-icon", label: '', initialWidth: 20, typeAttributes: {
+        label: 'Delete',
+        name: 'Delete',
+        title: 'Delete',
+        disabled: false,
+        value: 'delete',
+        iconPosition: 'left',
+        iconName:'utility:delete',
+        variant:'destructive' }
+    }];
+
+  @wire (OPDHead) opd1(opdh){
+    this.opHeadObj=opdh;
+    if(opdh.error){
+      this.opHeadObj=undefined;
+    }
+  };
+
+  fieldsItemValue7=[];
+  handleSave7(event){
+    this.fieldsItemValue7=event.detail.draftValues;
+    const inputItems=this.fieldsItemValue7.slice().map(draft =>{
+      const fields=Object.assign({}, draft);
+      return {fields};
+    });
+    const promises= inputItems.map(recordInput => updateRecord(recordInput));
+    Promise.all(promises).then(res =>{
+      console.log('rse',res);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Success',
+          message:'Record Update Successfully!!',
+          variant:'success'
+      }));
+      this.fieldsItemValue7=[];
+      return this.refresh7(); 
+    }).catch(error =>{
+      console.log('error',error);
+      this.dispatchEvent(new ShowToastEvent({
+          title: 'Error',
+          message:'An Error Occured!!',
+          variant:'error'
+      }));
+    }).finally(() =>{
+      this.fieldsItemValue7=[];
+    });
+  }
+  async refresh7(){
+      await refreshApex(this.opHeadObj)
+  }
+
+  async click7(){
+    const result=await modelChildOPDCollHead.open({
+     size:"small"
+    });
+    this.refresh7(); 
+  }
+
+  handleRowAction7(event){
+    const recId = event.detail.row.Id;
+    const actionName = event.detail.action.name;
+    if (actionName === 'Delete') {
+        this.handleDeleteRow7(recId);
+    }
+  }
+
+    handleDeleteRow7(recordIdToDelete) {
+      deleteRecord(recordIdToDelete)
+          .then(result => {
+              this.showToast('Success!!', 'Record deleted successfully!!', 'success', 'dismissable');
+              return this.refresh7();
+          }).catch(error => {
+              this.error = error;
+          });
+        }
+
+        showToast(title, message, variant, mode) {
+          const evt = new ShowToastEvent({
+              title: title,
+              message: message,
+              variant: variant,
+              mode: mode
+          });
+          this.dispatchEvent(evt);
+        }
+//OPD Collection Head tab logic end
 
 //Advice tab logic start
 @track adviceObj;
