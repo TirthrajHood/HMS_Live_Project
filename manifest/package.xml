@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>dosage_instructions__c</members>
-		<members>opd_collection_head__c</members>
+		<members>patient1__c</members>
 		<name>CustomTab</name>
 	</types>
 	<version>55.0</version>
