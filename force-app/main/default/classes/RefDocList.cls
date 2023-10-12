@@ -75,4 +75,14 @@ public with sharing class RefDocList {
      return [SELECT particulars__c, charges__c FROM opd_collection_head__c];
   }
   // OPD Collection Head Tab logic end
+
+//OPD Template tab logic start
+@AuraEnabled(cacheable=true)
+public static List<screening_template__c> scrTemp(){
+   return [SELECT heading__c FROM screening_template__c];
+}
+
+
+ //OPD Template tab logic end
+
 }

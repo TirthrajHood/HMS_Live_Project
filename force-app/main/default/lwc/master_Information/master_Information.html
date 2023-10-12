@@ -1,8 +1,8 @@
 <template>
        
-        <lightning-tabset  active-tab-value="Complaints" variant="scoped">
+        <lightning-tabset  active-tab-value={selectedTab} variant="scoped">
 
-            <lightning-tab label="Complaints">
+            <lightning-tab label="Complaints" value="Complaints">
 
               <lightning-datatable data={complaintObj.data} columns={comp1} key-field="Id"  hide-checkbox-column 
                   onsave={handleSave2} draft-values={fieldsItemValue2} onrowaction={handleRowAction}>
@@ -72,13 +72,47 @@
             </lightning-tab>
     
             <lightning-tab label="Screening Templates">
-              
-              
-              
+
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <lightning-input label="Heading" name ="Heading" onchange={handleChangeHeading} ></lightning-input>
+                        
+                        <lightning-button variant="brand" label="New" onclick={handelclickNew} ></lightning-button>
+                        <lightning-button variant="brand" label="Save" onclick={handelclickSave} ></lightning-button>
+                        <lightning-button variant="brand" label="Delete" onclick={handelclickDelete} ></lightning-button>
+                        
+                      </div>
+                      <lightning-input label="Details" name="Detail" onchange={handleChangeHeading} ></lightning-input>
+                        
+            
             </lightning-tab>
     
             <lightning-tab label="OPD Template">
-              
+             
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <lightning-combobox
+                  label="Heading"
+                  value={hed}
+                  placeholder="Select Heading"
+                  options={options}
+                  onchange={handleChange9}  
+                ></lightning-combobox>
+                
+                <lightning-button variant="brand" label="New" onclick={handelclickNew} ></lightning-button>
+                <lightning-button variant="brand" label="Save" onclick={handelclickSave} ></lightning-button>
+                <lightning-button variant="brand" label="Delete" onclick={handelclickDelete} ></lightning-button>
+                
+              </div>
+              <div>
+              <template if:true={cardVisible}>
+                <lightning-datatable data={scrTe.data} columns={scrt} key-field="Id"  hide-checkbox-column 
+              onsave={handleSave7} draft-values={fieldsItemValue7} onrowaction={handleRowAction7}>
+             </lightning-datatable>
+
+              </template>
+            </div>
+                
+
+             
               
             </lightning-tab>
     

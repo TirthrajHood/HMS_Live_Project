@@ -59,7 +59,20 @@ import { refreshApex } from '@salesforce/apex';
  import OPDHead from '@salesforce/apex/RefDocList.opdColHead';
  import modelChildOPDCollHead from 'c/modelChildOPDCollHead';
  //OPD Collection Head tab logic end
+
+ //Screening Template tab logic start
+ import { createRecord } from 'lightning/uiRecordApi';
+ import ScreeinigTemplate_Object from '@salesforce/schema/screening_template__c';
+ import Heading from '@salesforce/schema/screening_template__c.heading__c';
+ import Details8 from '@salesforce/schema/screening_template__c.details__c';
+ //Screening Template tab logic start
+
+ //OPD Template tab logic start
+ import ScrTemp from '@salesforce/apex/RefDocList.scrTemp';
+ //OPD Template tab logic end
+
 export default class Master_Information extends LightningElement {
+  @track selectedTab = "Complaints"; 
 
 //Past Complaint tab logic start
   @track complaintObj;
@@ -708,6 +721,83 @@ async click4(){
           this.dispatchEvent(evt);
         }
 //OPD Collection Head tab logic end
+
+//Screening Template tab logic start
+
+ heading = '';
+ details8 = '';
+ 
+ handleChangeHeading(event){ 
+  if(event.target.name === 'Heading'){
+  this.heading = event.target.value;
+  console.log("Heading: "+JSON.stringify(this.heading));
+  }else if(event.target.name === 'Detail'){
+      this.details8 = event.target.value;
+      console.log("Detail: "+JSON.stringify(this.details8));
+  }
+}
+handelclickSave(){
+    const fields={};
+    fields[Heading.fieldApiName] =this.heading;
+    fields[Details8.fieldApiName] =  this.details8;
+    console.log("fields: "+JSON.stringify(fields));
+
+    const recordInpute={apiName:ScreeinigTemplate_Object.objectApiName, fields};
+
+    createRecord(recordInpute)
+    .then(screeningTemp =>{
+
+    })
+    .catch(error =>{
+        console.error("error: "+JSON.stringify(error))
+    })
+    return this.refresh8();
+  }
+  async refresh8(){
+    await refreshApex(this.ScreeinigTemplate_Object)
+}
+ 
+
+//Screening Template tab logic end
+
+//OPD Template tab logic start
+ @track hed='';
+ @track hedArr=[];
+ @track cardVisible = false;
+ @track scrTe = [];
+ @track scrt =[{label:'Medicine', fieldName:'name__c', type:'text', editable:true},
+ {label:'Generic Name', fieldName:'generic__c', type:'text', editable:true},
+ {label:'Dose', fieldName:'dosage__c', type:'text', editable:true},
+ {label:'Days', fieldName:'numOfDays__c', type:'text', editable:true},
+ {label:'Instruction', fieldName:'dosageInstruction__c', type:'text', editable:true}]
+
+ handleChange9(event){
+  
+this.cardVisible = true;
+
+  this.hed=event.detail.value;
+  console.log("value"+JSON.stringify(this.hed));
+
+ }  
+
+ get options(){
+     return this.hedArr;
+ }
+
+ connectedCallback(){
+   ScrTemp()
+   .then(response=>{
+      let arr=[];
+      for (var i=0 ; i<response.length; i++){
+        arr.push({label: response[i].heading__c, value: response[i].heading__c})
+      }
+      this.hedArr=arr;
+   })
+ }
+
+ 
+
+ //OPD Template tab logic end
 
 //Advice tab logic start
 @track adviceObj;

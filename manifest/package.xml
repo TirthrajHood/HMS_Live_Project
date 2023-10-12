@@ -31,5 +31,9 @@
 		<members>patient1__c</members>
 		<name>CustomTab</name>
 	</types>
-	<version>55.0</version>
+	<types>
+		<members>HMS_Consultant</members>
+		<name>PermissionSet</name>
+	</types>
+	<version>58.0</version>
 </Package>
